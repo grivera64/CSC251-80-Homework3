@@ -64,26 +64,27 @@ int main()
         //before attempting any other request
         clear_input();
 
+        /* Check selected operation and execute */
         switch (code)
         {
 
             case 'i': 
-                num_parts = insert(inventory, num_parts);
+                num_parts = insert(inventory, num_parts);                   //inserts a new non-existing part
                 break;
             case 's':
-                search(inventory, num_parts);
+                search(inventory, num_parts);                               //searches for an existing part
                 break;
             case 'u':
-                update(inventory, num_parts);
+                update(inventory, num_parts);                               //updates an existing part
                 break;
             case 'p':
-                print(inventory, num_parts);
+                print(inventory, num_parts);                                //prints the current parts
                 break;
             case 'q':
-                return 0;                     //end of program
+                return 0;                                                   //end of program
 
             default: 
-                printf("Illegal choice. Please try again.\n");
+                printf("Illegal choice. Please try again.\n");              //indicates invalid command
                 //break here not required
 
         } //end of switch statement
@@ -108,13 +109,17 @@ int find_part(int number, struct part inventory[], int num_parts)
 
     } //end of for
 
+    //if not found return invalid index
     return -1;
 
 }
 
+
+//inserts a new part into inventory
 int insert(struct part inventory[], int num_parts)
 {
 
+    //create local variable
     int part_num;
 
     //Checking the data base capacity
@@ -137,33 +142,42 @@ int insert(struct part inventory[], int num_parts)
         return num_parts;
     }
 
+    //adding number attribute for the current part
     inventory[num_parts].number = part_num;
 
     //asking for user input
     printf("Enter your part name: ");
-    read_line(inventory[num_parts].name, NAME_LEN);         //we need to define this
+    read_line(inventory[num_parts].name, NAME_LEN);                         //defined by readline.h header file
     printf("Enter quantity on-hand: ");
     scanf("%d", &inventory[num_parts].on_hand);
 
+    //increment the total num of parts
     num_parts++;
 
+    //clear the input stream
     clear_input();
 
+    //return updated num_parts
     return num_parts;
 
 
 }
 
+//searches for an existing part in the inventory by part number
 void search(struct part inventory[], int num_parts)
 {
 
+    //create local variables
     int part_number, i;
 
+    /* Request for user input of part number */
     printf("Please enter your part number: ");
     scanf("%d", &part_number);
 
+    //search for part
     i = find_part(part_number, inventory, num_parts);
 
+    //Print out the data if true, otherwise state part not found
     if (i >= 0)
     {
 
@@ -178,28 +192,36 @@ void search(struct part inventory[], int num_parts)
 
     }
 
+    //clear input stream
     clear_input();
 
 
 
 } // end of search
 
+//updates an indicated existing part
 void update(struct part inventory[], int num_parts)
 {
 
+    //local variables
     int i, part_number, change;
 
+    /* Ask user for input of part number to update */
     printf("Enter part number: ");
     scanf("%d", &part_number);
 
+    //search for part number to update
     i = find_part(part_number, inventory, num_parts);
 
+    //if exists, update quantity on-hand, otherwise print error
     if (i >= 0)
     {
 
+        /* Ask user for change in the on hand amount */
         printf("Please enter change in quantity on-hand: ");
         scanf("%d", &change);
 
+        //change the on_hand amount by obtained amount
         inventory[i].on_hand += change;
 
     }
@@ -210,16 +232,22 @@ void update(struct part inventory[], int num_parts)
 
     }
 
+    //clear input stream
     clear_input();
 
-}
+} //end of update
 
+//print current inventory
 void print(struct part inventory[], int num_parts)
 {
 
+    //local variables
     int i;
+    
+    //print table chart
     printf("Part number    Part name    On hand\n");
     
+    //print data of each inventory part
     for (i = 0; i < num_parts; i++)
     {
 
@@ -227,11 +255,12 @@ void print(struct part inventory[], int num_parts)
 
     }
 
-}
+} //end of print
 
+//clear input stream
 void clear_input(void)
 {
 
     while (getchar() != '\n');                  //skip to the end of line
 
-}
+} //end of clear_input
