@@ -302,7 +302,7 @@ void print(struct part inventory[], int num_parts)
     int i;
     
     //print table chart
-    printf("Part number    Part name    On hand\n");
+    printf("Part number    Part name    On hand      Price\n");
     
     //print data of each inventory part
     for (i = 0; i < num_parts; i++)
