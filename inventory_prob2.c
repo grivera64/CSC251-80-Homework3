@@ -111,10 +111,15 @@ If the the part number doeent exist, it returns -1
 int find_part(int number, struct part inventory[], int num_parts)
 {
 
+    //local variable
     int i;
+
+    //go through each part in inventory
     for (i = 0; i < num_parts; i++)
     {
 
+        //if an inventory part number matches the given number,
+        //return the part's index
         if (inventory[i].number == number)
         {
 
@@ -160,16 +165,12 @@ int insert(struct part inventory[], int num_parts)
     //adding number attribute for the current part
     inventory[num_parts].number = part_num;
 
-    //printf("DEBUG: %d\n", inventory[num_parts].number);
-
     //asking for user input
     printf("Enter your part name: ");
     read_line(inventory[num_parts].name, NAME_LEN);                         //defined by readline.h header file
-    //printf("DEBUG: %s\n", inventory[num_parts].name);
 
     printf("Enter quantity on-hand: ");
     scanf("%d", &inventory[num_parts].on_hand);
-    //printf("DEBUG: %d\n", inventory[num_parts].on_hand);
 
     //clear the input stream
     clear_input();
@@ -177,7 +178,6 @@ int insert(struct part inventory[], int num_parts)
     //ask user for price
     printf("Enter price: $");
     scanf("%lf", &inventory[num_parts].price);
-    //printf("DEBUG: %lf\n", inventory[num_parts].price);
 
     //clear the input stream (again)
     clear_input();
