@@ -11,9 +11,17 @@
 #include <ctype.h>
 #include "readline.h"
 
+/*
+
+Reads in a String (char array of size n) from the terminal
+and stores it inside of the provided char array
+
+*/
+
 int read_line(char str[], int n)
 {
 
+    //local variables
     int ch, i = 0;
 
     //Skips the white-spaces characters

@@ -7,6 +7,7 @@
 
 */
 
+/* Defines the read_line() function from readline.c */
 #ifndef READLINE_H
 #define READLINE_H 
     int read_line(char str[], int n);
