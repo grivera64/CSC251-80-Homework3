@@ -103,10 +103,15 @@ If the the part number doeent exist, it returns -1
 int find_part(int number, struct part inventory[], int num_parts)
 {
 
+    //local variable
     int i;
+
+    //go through each part in inventory
     for (i = 0; i < num_parts; i++)
     {
 
+        //if an inventory part number matches the given number,
+        //return the part's index
         if (inventory[i].number == number)
         {
 
