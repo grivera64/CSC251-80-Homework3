@@ -93,6 +93,13 @@ int main()
 
 }
 
+/*
+
+Returns the index of a part if its part number exists in inventory
+If the the part number doeent exist, it returns -1
+
+*/
+
 int find_part(int number, struct part inventory[], int num_parts)
 {
 
